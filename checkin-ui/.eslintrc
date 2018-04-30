@@ -1,0 +1,30 @@
+{
+  "plugins": [
+    "prettier",
+    "react",
+    "eslint-plugin-react"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "useTabs": true
+      }
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "eslint:all", 
+    "plugin:react/all"
+  ],
+  "parser": "babel-eslint"
+}

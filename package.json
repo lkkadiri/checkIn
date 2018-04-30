@@ -1,0 +1,16 @@
+{
+  "name": "Checkin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Leela",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/pm2 start ecosystem.config.js",
+    "stop": "./node_modules/.bin/pm2 stop ecosystem.config.js && cd checkin-server && docker-compose stop && cd .. && cd checkin-ui && docker-compose stop",
+    "logs": "./node_modules/.bin/pm2 logs"
+  },
+  "dependencies": {
+    "pm2": "^2.10.3"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "useTabs": true
+      }
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "extends": [
+    "prettier"
+  ],
+  "parser": "babel-eslint"
+}

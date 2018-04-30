@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  node:
+    image: "node:carbon"
+    container_name: baker_node
+    user: "node"
+    working_dir: /home/node/app/server
+    environment:
+      DB_HOST: db
+      DIALECT: "postgres"
+    volumes:
+      - ./:/home/node/app/server
+    ports:
+      - "3001:3001"
+    expose:
+      - "8081"
+    command: bash -c "npm i && npm start"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: always
+    container_name: baker_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: checkin_user
+      POSTGRES_DB: checkin_development
