@@ -1,3 +1,5 @@
+import * as lang from './lang'
+
 import React, { Component } from 'react';
 
 import styled from 'styled-components';
@@ -10,6 +12,13 @@ const StyledLabel = styled.label`
   text-align: left;
 `;
 
+const SignupMsg = styled.p`
+  font-size: 1.5em;
+  max-width: 460px;
+  padding: 1em;
+  line-height: 1.5em;
+  color: #37495C;
+`;
 class UserForm extends Component {
   constructor(props) {
     super(props);
@@ -32,24 +41,26 @@ class UserForm extends Component {
 
   render() {
     return (
-      <StyledForm onSubmit={(event) => {
-          event.preventDefault();
-          this.props.handleSubmit(this.state);
-        }}>
-        <StyledLabel>
-          First Name:
-          <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleChange} />
-        </StyledLabel>
-        <StyledLabel>
-          Last Name:
-          <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleChange} />
-        </StyledLabel>
-        <StyledLabel>
-          Email:
-          <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
-        </StyledLabel>
-        <input type="submit" value="Submit" />
-      </StyledForm>
+      <div>
+        <SignupMsg>{lang['signup']}</SignupMsg>
+        <StyledForm onSubmit={(event) => {
+            event.preventDefault();
+            this.props.handleSubmit(this.state);
+          }}>
+          <StyledLabel>
+            First Name:
+            <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleChange} />
+            Last Name:
+            <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleChange} />
+          </StyledLabel>
+          <StyledLabel>
+            Email:
+            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
+          </StyledLabel>
+          <input type="submit" value="Submit" />
+        </StyledForm>
+      </div>
+
     );
   }
 }

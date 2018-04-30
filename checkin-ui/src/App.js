@@ -9,12 +9,28 @@ import React, { Component } from 'react';
 import Phone from 'react-phone-number-input'
 import UserForm from './UserForm';
 import UserPoints from './UserPoints';
-import logo from './logo.png';
+import logo from './logo.svg';
 import request from 'request-promise';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
   padding: 4em;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const Heythere = styled.p`
+  font-size: 1em;
+  line-height: 1.5em;
+  color: #8294A6;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+`;
+
+const WelcomeMessage = styled.p`
+  font-size: 1.5em;
+  line-height: 1.5em;
+  color: #37495C;
 `;
 
 class App extends Component {
@@ -70,12 +86,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Check In</h1>
         </header>
         <Wrapper>
           {!this.state.requested &&       
             <div>
-              <p>{lang['welcomeMessage']}</p>
+              <Heythere>{lang['heythere']}</Heythere>
+              <WelcomeMessage>{lang['welcomeMessage']}</WelcomeMessage>
               <div className='phone-number-input'>
                 <Phone
                   country={'US'}

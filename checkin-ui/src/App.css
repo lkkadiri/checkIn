@@ -8,10 +8,10 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-image: url(https://cdn2.hubspot.net/hubfs/2553801/baker-isometric-footer.svg?t=1516215254366) !important;
   height: 80px;
   padding: 20px;
-  color: #4b4472;
+  color: white;
   display: flex;
   justify-content: center;
 }
@@ -49,9 +49,10 @@ input[type="email"] {
 }
 
 input[type="text"]:focus,
-input[type="password"]:focus {
-  border-bottom: 2px solid #fa6a6b;
-  color: #fa6a6b;
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-bottom: 2px solid #30D6B6;
+  color: #30D6B6;
   transition: 0.2s ease;
 }
 
@@ -59,14 +60,16 @@ input[type="submit"] {
   margin-top: 28px;
   width: 120px;
   height: 32px;
-  background: rgb(33,150,174);;
+  background: rgba(13, 168, 214, 1);
   border: none;
-  border-radius: 25px;
+  border-radius: 5px;
   color: #FFF;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-weight: 500;
   transition: 0.1s ease;
   cursor: pointer;
+  transition: 0.4s all ease;
+  text-transform: uppercase;
 }
 
 input[type="submit"]:hover,
@@ -84,4 +87,7 @@ input[type="submit"]:active {
 
 .phone-number-input{
   margin: 0 3em;
+  justify-content: space-around;
+  display: flex;
+  font-family: 'Josefin Sans', sans-serif;
 }
