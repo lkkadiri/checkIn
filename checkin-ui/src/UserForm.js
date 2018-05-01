@@ -33,7 +33,6 @@ class UserForm extends Component {
 
   handleChange(event) {
     const {name, value} = event.target;
-
     this.setState({
       [name]: value
     });
@@ -57,7 +56,7 @@ class UserForm extends Component {
             Email:
             <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
           </StyledLabel>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Sign Up" />
         </StyledForm>
       </div>
 

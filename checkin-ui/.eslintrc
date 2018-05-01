@@ -2,6 +2,7 @@
   "plugins": [
     "prettier",
     "react",
+    "jsx-a11y",
     "eslint-plugin-react"
   ],
   "rules": {
@@ -20,6 +21,7 @@
     }
   },
   "extends": [
+    "airbnb",
     "prettier",
     "eslint:recommended",
     "plugin:react/recommended",

@@ -35,9 +35,6 @@ sequelize
 
 var router = new Router();
 router
-	// .get('/users/:id', (ctx, next) => {
-	// 	ctx.body = 'Hello World!';
-	// })
 	.post('/users', async (ctx, next) => {
 		let res = await usersController.create(ctx.request.body);
 		ctx.status = 201;
@@ -48,12 +45,6 @@ router
 		let res = await usersController.checkUser({ phone });
 		ctx.body = res;
 	});
-// .put('/users/:id', (ctx, next) => {
-// 	ctx.body = 'Updated';
-// })
-// .del('/users/:id', (ctx, next) => {
-// 	ctx.body = 'Deleted';
-// });
 
 app.use(router.routes()).use(router.allowedMethods());
 

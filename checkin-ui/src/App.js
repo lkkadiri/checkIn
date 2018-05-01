@@ -35,8 +35,8 @@ const WelcomeMessage = styled.p`
 
 class App extends Component {
   constructor(props) {
-		super(props)
-		this.state = {
+    super(props)
+    this.state = {
       phone: '',
       user: null,
       requested: false,
@@ -45,41 +45,42 @@ class App extends Component {
     this.handleCheckIn = this.handleCheckIn.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  async handleCheckIn(){
-    this.setState({requested: true})
-    var options = {
-      method: 'POST',
-      uri: 'http://localhost:3001/users/phone',
-      body: {
-          phone: this.state.phone
-      },
-      json: true
-    };
-  
-    let res = await request(options)
+  async handleCheckIn() {
     
-    if(!res){
-      await this.setState({newUser: true})
-    }
-    await this.setState({user: res}) 
-  }
-  async handleSubmit(values){
-    this.setState({newUser: false})
-    let {firstName, lastName, email} = values;
+    this.setState({ requested: true })
     var options = {
       method: 'POST',
-      uri: 'http://localhost:3001/users',
+      uri: `${process.env.REACT_APP_CHEKIN_API_URL}/users/phone`,
       body: {
-          phone: this.state.phone,
-          firstName,
-          lastName,
-          email    
+        phone: this.state.phone
       },
       json: true
     };
-  
+
     let res = await request(options)
-    await this.setState({user: res}) 
+
+    if (!res) {
+      await this.setState({ newUser: true })
+    }
+    await this.setState({ user: res })
+  }
+  async handleSubmit(values) {
+    this.setState({ newUser: false })
+    let { firstName, lastName, email } = values;
+    var options = {
+      method: 'POST',
+      uri: `${process.env.REACT_APP_CHEKIN_API_URL}/users`,
+      body: {
+        phone: this.state.phone,
+        firstName,
+        lastName,
+        email
+      },
+      json: true
+    };
+
+    let res = await request(options)
+    await this.setState({ user: res })
   }
   render() {    
     return (
@@ -88,7 +89,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Wrapper>
-          {!this.state.requested &&       
+          {!this.state.requested &&
             <div>
               <Heythere>{lang['heythere']}</Heythere>
               <WelcomeMessage>{lang['welcomeMessage']}</WelcomeMessage>
@@ -96,18 +97,19 @@ class App extends Component {
                 <Phone
                   country={'US'}
                   placeholder="Enter phone number"
-                  value={ this.state.phone }
-                  onChange={ phone => this.setState({ phone }) } 
+                  value={this.state.phone}
+                  onChange={phone => this.setState({ phone })}
+                  indicateInvalid
                 />
               </div>
-              <input type="submit" value="Check In" onClick={this.handleCheckIn}/>
+              <input type="submit" value="Check In" onClick={this.handleCheckIn} />
             </div>
           }
-          {this.state.newUser && 
-            <UserForm handleSubmit={this.handleSubmit}/>
+          {this.state.newUser &&
+            <UserForm handleSubmit={this.handleSubmit} />
           }
-          {this.state.user && 
-            <UserPoints user={this.state.user}/>
+          {this.state.user &&
+            <UserPoints user={this.state.user} />
           }
         </Wrapper>
       </div>

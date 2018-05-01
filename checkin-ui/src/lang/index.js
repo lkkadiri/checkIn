@@ -1,6 +1,6 @@
 module.exports = {
 	heythere: `Welcome to Baker!`,
-	welcomeMessage: `Please enter your phone number below to Check-in. Rack up points and save big!`,
+	welcomeMessage: `Please enter your phone number below to check-in. Rack up points and save big!`,
 	signup: `Sorry! we could not find you. Please signup now to receive 50 bonus points instantly.`,
 	pointsMessage: ({firstName, lastName, visits, points}) => {
 		let msg;
