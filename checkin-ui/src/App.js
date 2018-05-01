@@ -40,33 +40,52 @@ class App extends Component {
       phone: '',
       user: null,
       requested: false,
-      newUser: false
+      newUser: false,
+      error: null
     }
     this.handleCheckIn = this.handleCheckIn.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  async handleCheckIn() {
-    
-    this.setState({ requested: true })
-    var options = {
-      method: 'POST',
-      uri: `${process.env.REACT_APP_CHEKIN_API_URL}/users/phone`,
-      body: {
-        phone: this.state.phone
-      },
-      json: true
-    };
+  /**
+   * Handles Checkin when user types in their phone number
+   * 
+   * @memberof App
+   */
+  async handleCheckIn() {    
+    try {
+        this.setState({ requested: true })
+        var options = {
+          method: 'POST',
+          uri: `${process.env.REACT_APP_CHEKIN_API_URL}/users/phone`,
+          body: {
+            phone: this.state.phone
+          },
+          json: true
+        };
+        let res = await request(options)
 
-    let res = await request(options)
-
-    if (!res) {
-      await this.setState({ newUser: true })
+      if (!res) {
+        await this.setState({ newUser: true })
+      }
+      await this.setState({ user: res })
+        
+    } catch (error) {
+        if(error.name === 'RequestError'){
+          await this.setState({ error: lang['requestError'] })
+        }else{
+          await this.setState({ error })
+        }
     }
-    await this.setState({ user: res })
   }
-  async handleSubmit(values) {
+
+  /**
+   * Handles the user signup action
+   * 
+   * @param {any} { firstName, lastName, email } 
+   * @memberof App
+   */
+  async handleSubmit({ firstName, lastName, email }) {
     this.setState({ newUser: false })
-    let { firstName, lastName, email } = values;
     var options = {
       method: 'POST',
       uri: `${process.env.REACT_APP_CHEKIN_API_URL}/users`,
@@ -89,6 +108,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Wrapper>
+          {this.state.error && 
+             <WelcomeMessage>{this.state.error}</WelcomeMessage>
+          }
           {!this.state.requested &&
             <div>
               <Heythere>{lang['heythere']}</Heythere>

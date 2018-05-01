@@ -8,9 +8,11 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
 `
+StyledForm.displayName = 'StyledForm';
 const StyledLabel = styled.label`
   text-align: left;
 `;
+StyledLabel.displayName = 'StyledLabel';
 
 const SignupMsg = styled.p`
   font-size: 1.5em;
@@ -19,18 +21,25 @@ const SignupMsg = styled.p`
   line-height: 1.5em;
   color: #37495C;
 `;
+SignupMsg.displayName = 'SignupMsg';
 class UserForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: null,
-      lastName: null,
-      email: null
+      firstName: '',
+      lastName: '',
+      email: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
+  /**
+   * Sets the various form values to the state for submission
+   * 
+   * @param {any} event 
+   * @memberof UserForm
+   */
   handleChange(event) {
     const {name, value} = event.target;
     this.setState({
@@ -42,7 +51,7 @@ class UserForm extends Component {
     return (
       <div>
         <SignupMsg>{lang['signup']}</SignupMsg>
-        <StyledForm onSubmit={(event) => {
+        <StyledForm id='StyledForm' onSubmit={(event) => {
             event.preventDefault();
             this.props.handleSubmit(this.state);
           }}>
