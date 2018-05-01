@@ -1,8 +1,7 @@
 const moment = require('moment');
-const models = require('../models');
+const User = require('../models').User;
 const config = require('config');
 const lang = require('../lang');
-const User = models.User;
 module.exports = {
 	/**
 	 * Create a new user
@@ -44,7 +43,7 @@ module.exports = {
 	async updateUserPointsVists({ points, visits, userId, lastVisited }) {
 		if (
 			moment()
-				.subtract(20, 'seconds')
+				.subtract(5, 'minutes')
 				.isAfter(lastVisited)
 		) {
 			const updatedUser = await User.update(
